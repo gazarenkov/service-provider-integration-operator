@@ -42,8 +42,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-const tokenSecretLabel = "spi.appstudio.redhat.com/upload-secret" //nolint:gosec
-const spiTokenNameLabel = "spi.appstudio.redhat.com/token-name"
+const tokenSecretLabel = "spi.appstudio.redhat.com/upload-secret" //#nosec G101 -- false positive, this is not a token
+const spiTokenNameLabel = "spi.appstudio.redhat.com/token-name"   //#nosec G101 -- false positive, this is not a token
 const providerUrlLabel = "spi.appstudio.redhat.com/providerUrl"
 
 //+kubebuilder:rbac:groups=appstudio.redhat.com,resources=spiaccesstokendataupdates,verbs=create

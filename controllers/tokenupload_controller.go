@@ -155,10 +155,15 @@ func (r *TokenUploadReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 
 // SetupWithManager sets up the controller with the Manager.
 func (r *TokenUploadReconciler) SetupWithManager(mgr ctrl.Manager) error {
-	return ctrl.NewControllerManagedBy(mgr).
+
+	if err := ctrl.NewControllerManagedBy(mgr).
 		For(&corev1.Secret{}).
 		WithEventFilter(createTokenPredicate()).
-		Complete(r)
+		Complete(r); err != nil {
+		err = fmt.Errorf("failed to build the controller manager: %w", err)
+		return err
+	}
+	return nil
 }
 
 func createTokenPredicate() predicate.Predicate {

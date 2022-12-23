@@ -42,9 +42,12 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-const tokenSecretLabel = "spi.appstudio.redhat.com/upload-secret"
+const tokenSecretLabel = "spi.appstudio.redhat.com/upload-secret" //nolint:gosec
 const spiTokenNameLabel = "spi.appstudio.redhat.com/token-name"
 const providerUrlLabel = "spi.appstudio.redhat.com/providerUrl"
+
+//+kubebuilder:rbac:groups=appstudio.redhat.com,resources=spiaccesstokendataupdates,verbs=create
+//+kubebuilder:rbac:groups="",resources=events,verbs=get;list;watch;create;update;delete
 
 // TokenUploadReconciler reconciles a Secret object
 type TokenUploadReconciler struct {

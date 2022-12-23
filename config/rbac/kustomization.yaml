@@ -9,8 +9,6 @@ resources:
 - role_binding.yaml
 - leader_election_role.yaml
 - leader_election_role_binding.yaml
-- manager_extra_role.yaml
-- manager_extra_role_binding.yaml
 
 # Aggregating roles which are otherwise done by OLM
 - spiaccesstoken_editor_role.yaml
